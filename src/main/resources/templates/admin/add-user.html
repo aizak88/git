@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add New User</title>
+</head>
+<body>
+<form action="#" th:action="@{/adduser}" th:object="${user}" method="post">
+
+    <label for="name"><font size="5" color="red">ФИО</font></label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name"/>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
+    <label for="phone"><font size="5" color="red">Phone</font></label>
+    <input type="text" th:field="*{phone}" id="phone" placeholder="Phone"/>
+    <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+
+    <label for="login"><font size="5" color="red">Login</font></label>
+    <input type="text" th:field="*{login}" id="login" placeholder="login"/>
+    <span th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
+
+    <label for="pwd"><font size="5" color="red">Password</font></label>
+    <input type="password" th:field="*{pwd}" id="pwd" placeholder="Password"/>
+    <span th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></span>
+
+
+    <!--
+     <br>
+    <label for="email"><font size="5" color="red">Email</font></label>
+    <input type="text" th:field="*{email}" id="email" placeholder="Email">
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    <br>
+        <input type="checkbox" name="is_active"
+               th:value="*{is_active}" th:checked="${is_active}">Активный<br>
+
+       <select class="form-control" id="selectRole" name="selectRole">
+            <option value="">Выберите роль</option>
+            <option th:each="role : ${roles}"
+                    th:value="${role.id}"
+                    th:text="${role.role_name}"></option>
+        </select> -->
+    <input type="submit" value="Save"/>
+</form>
+</body>
+</html>

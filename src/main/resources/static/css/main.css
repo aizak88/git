@@ -6,6 +6,11 @@ h2{
     color:#FF0000;
 }
 
+
 footer{
     margin-top:60px;
 }
+body{
+    background-color:#c0c0c0; /* Цвет фона веб-страницы */
+}
+

@@ -1,8 +1,13 @@
-
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Spring Boot Thymeleaf + Spring Security</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <title>The programme of Cashier BOX</title>
 
     <div th:replace="fragments/header :: header-css"/>
 
@@ -12,16 +17,21 @@
 <div th:replace="fragments/header :: header"/>
 
 <div class="container">
-
-    <div class="starter-template">
-        <h1>Spring Boot Web Thymeleaf + Spring Security</h1>
-        <h2>1. Visit <a th:href="@{/admin}">Admin page (Spring Security protected, Need Admin Role)</a></h2>
-        <h2>2. Visit <a th:href="@{/user}">User page (Spring Security protected, Need User Role)</a></h2>
-        <h2>3. Visit <a th:href="@{/about}">Normal page</a></h2>
+    <div class="container">
+        <p class="font-weight-bold">The programme of Cashier BOX</p>
     </div>
+    <div class="starter-template">
+        <div class="container">
+            <a th:href="@{/admin}" class="btn btn-light">Admin</a>
+            <a th:href="@{/user}" class="btn btn-light">User</a>
+            <a th:href="@{/about}" class="btn btn-light">About us</a>
+        </div>
+       <!--<h2>1. Visit <a th:href="@{/admin}">Admin page (Spring Security protected, Need Admin Role)</a></h2>
+        <h2>2. Visit <a th:href="@{/user}">User page (Spring Security protected, Need User Role)</a></h2>
+        <h2>3. Visit <a th:href="@{/about}">Normal page</a></h2> -->
 
+    </div>
 </div>
-<!-- /.container -->
 
 <div th:replace="fragments/footer :: footer"/>
 

@@ -1,26 +1,65 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html  lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+
+    <link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" media="screen" rel="stylesheet"/>
     <div th:replace="fragments/header :: header-css"/>
 </head>
 <body>
 
 <div th:replace="fragments/header :: header"/>
 
-<div class="container">
-
-    <div class="starter-template">
-        <h1>Admin page (Spring Security protected)</h1>
-
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
-
-    </div>
-
+<div class="jumbotron">
+    <h1 class="display-4">Admin</h1>
+    <p class="lead">Admin can add users</p>
+    <hr class="my-4"/>
+    <p>Тут ниже кнопка, для выхода админа.</p>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" class="btn btn-primary btn-lg" role="button" value="Sign Out"/>
+    </form>
 </div>
 <!-- /.container -->
+<div>
+    <div th:switch="${users}">
+        <h2 th:case="null">No users yet!</h2>
+        <div th:case="*">
+
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">ФИО</th>
+                    <th scope="col">Логин</th>
+                    <th scope="col">Пароль</th>
+                    <th scope="col">Телефон</th>
+                    <!-- <th scope="col">Роль</th> -->
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.login}"></td>
+                    <td th:text="${user.pwd}"></td>
+                    <td th:text="${user.phone}"></td>
+                    <!-- <td th:text="${user.role.role_name}"></td> -->
+                    <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
+                    <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <a href="/signup"  type="button" class="btn btn-outline-primary">Add a new user</a>
+    </div>
+        <nav class="navbar navbar-light bg-light">
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </nav>
+
+</div>
 
 <div th:replace="fragments/footer :: footer"/>
 
