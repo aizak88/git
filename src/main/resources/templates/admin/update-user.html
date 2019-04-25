@@ -11,7 +11,7 @@
 <div class="container">
     <div class="row" style="margin-top:20px">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            <form action="#" th:action="@{/adduser}" th:object="${user}" method="post">
+            <form action="#" th:action="@{/update/{id}(id=${user.id})}" th:object="${user}" method="post">
                 <fieldset>
                     <p class="font-weight-bold">Create a new user</p>
                     <div th:if="${param.error}">
@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group">
                         <input  type="text" th:field="*{phone}" id="phone" class="form-control input-lg"
-                               placeholder="Phone" required="true" autofocus="true"/>
+                                placeholder="Phone" required="true" autofocus="true"/>
                         <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
                     </div>
                     <div class="form-group">
@@ -79,22 +79,22 @@
     <span th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></span>
 
 -->
-    <!--
-     <br>
-    <label for="email"><font size="5" color="red">Email</font></label>
-    <input type="text" th:field="*{email}" id="email" placeholder="Email">
-    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-    <br>
-        <input type="checkbox" name="is_active"
-               th:value="*{is_active}" th:checked="${is_active}">Активный<br>
+<!--
+ <br>
+<label for="email"><font size="5" color="red">Email</font></label>
+<input type="text" th:field="*{email}" id="email" placeholder="Email">
+<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+<br>
+    <input type="checkbox" name="is_active"
+           th:value="*{is_active}" th:checked="${is_active}">Активный<br>
 
-       <select class="form-control" id="selectRole" name="selectRole">
-            <option value="">Выберите роль</option>
-            <option th:each="role : ${roles}"
-                    th:value="${role.id}"
-                    th:text="${role.role_name}"></option>
-        </select> -->
-   <!-- <input type="submit" value="Save"/>
+   <select class="form-control" id="selectRole" name="selectRole">
+        <option value="">Выберите роль</option>
+        <option th:each="role : ${roles}"
+                th:value="${role.id}"
+                th:text="${role.role_name}"></option>
+    </select> -->
+<!-- <input type="submit" value="Save"/>
 </form> -->
 <div th:replace="fragments/footer :: footer"/>
 </body>

@@ -2,6 +2,7 @@ package kg.itrun.second.demo.controller;
 
 
 
+import kg.itrun.second.demo.repository.GoodsRepository;
 import kg.itrun.second.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DefaultController {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private GoodsRepository goodsRepository;
 
     @GetMapping("/")
     public String home1() {
@@ -30,7 +33,8 @@ public class DefaultController {
     }
 
     @GetMapping("/user")
-    public String user() {
+    public String user(Model model) {
+        model.addAttribute("goods", goodsRepository.findAll());
         return "/user";
     }
 

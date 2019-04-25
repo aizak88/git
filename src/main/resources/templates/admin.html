@@ -14,6 +14,8 @@
     <h1 class="display-4">Admin</h1>
     <p class="lead">Admin can add users</p>
     <hr class="my-4"/>
+    <a href="/signup"  type="button" class="btn btn-primary btn-lg">Add a new user</a>
+
     <p>Тут ниже кнопка, для выхода админа.</p>
     <form th:action="@{/logout}" method="post">
         <input type="submit" class="btn btn-primary btn-lg" role="button" value="Sign Out"/>
@@ -50,14 +52,9 @@
                 </tbody>
             </table>
         </div>
-        <a href="/signup"  type="button" class="btn btn-outline-primary">Add a new user</a>
+
     </div>
-        <nav class="navbar navbar-light bg-light">
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </nav>
+
 
 </div>
 

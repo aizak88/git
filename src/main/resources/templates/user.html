@@ -1,26 +1,56 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" media="screen" rel="stylesheet"/>
     <div th:replace="fragments/header :: header-css"/>
 </head>
 <body>
-
 <div th:replace="fragments/header :: header"/>
+<div class="jumbotron">
+    <h1 class="display-4">Staff</h1>
+    <p class="lead">User can add goods</p>
+    <hr class="my-4"/>
+    <a href="/newgoods" type="button" class="btn btn-outline-primary">Add goods</a>
 
-<div class="container">
-
-    <div class="starter-template">
-        <h1>User page (Spring Security protected)</h1>
-
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
+    <p>Тут ниже кнопка, для выхода админа.</p>
+    <form th:action="@{/logout}" method="post">
+        <p class="font-weight-bold" th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</p>
+        <input type="submit" class="btn btn-primary btn-lg" role="button" value="Sign Out"/>
+    </form>
+</div>
+<div>
+        <div th:switch="${goods}">
+            <h2 th:case="null">No goods yet!</h2>
+            <div th:case="*">
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Товар</th>
+                    <th scope="col">Количество штук</th>
+                    <th scope="col">Цена</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="goods :${goods}">
+                    <td th:text="${goods.goodsName}"></td>
+                    <td th:text="${goods.count}"></td>
+                    <td th:text="${goods.price}"></td>
+                    <!-- <td th:text="${goods.is_active}"></td>
+                    <td th:text="${goods.info}"></td>
+                    <td th:text="${goods.goods_type_id.type_name}"></td>
+                    <td th:text="${goods.price_id.price}"></td> -->
+                    <td><a th:href="@{/editgoods/{id}(id=${goods.id})}">Edit</a></td>
+                    <td><a th:href="@{/deletegoods/{id}(id=${goods.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
     </div>
-
 </div>
-<!-- /.container -->
 <div th:replace="fragments/footer :: footer"/>
 
 </body>
